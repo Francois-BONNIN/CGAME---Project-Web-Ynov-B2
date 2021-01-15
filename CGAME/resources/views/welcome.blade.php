@@ -7,6 +7,8 @@
         <title>Laravel</title>
 
         <!-- Fonts -->
+        <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+        
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
 
         <!-- Styles -->
@@ -97,4 +99,9 @@
             </div>
         </div>
     </body>
+    <script 
+            src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script>
+    <script src="semantic/dist/semantic.min.js"></script>
 </html>
