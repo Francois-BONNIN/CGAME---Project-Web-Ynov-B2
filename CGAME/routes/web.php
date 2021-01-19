@@ -20,4 +20,4 @@ Route::get('/', function () {
 Auth::routes();
 Route::resource('/admin/users','Admin\UsersController');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/profil', 'HomeController@index')->name('home');
