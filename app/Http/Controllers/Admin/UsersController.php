@@ -62,7 +62,7 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('admin.users.edit', ['user' => $user]);
     }
 
     /**
@@ -74,7 +74,14 @@ class UsersController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $editUser = User::find($user ->id);
+        $editUser -> firstname = $request ->input('firstname');
+        $editUser -> lastname = $request ->input('lastname');
+        $editUser -> email = $request ->input('email');
+        $editUser -> birthdate = $request ->input('birthdate');
+        $editUser -> push();
+
+        return redirect() -> route('admin.users.index');
     }
 
     /**
@@ -85,6 +92,9 @@ class UsersController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $deleteUser = User::find($user ->id);
+        $deleteUser -> delete();
+
+        return redirect() -> route('admin.users.index');
     }
 }
