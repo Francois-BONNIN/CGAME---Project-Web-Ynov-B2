@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Role;
 use App\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class UsersController extends Controller
 {
@@ -62,7 +63,10 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
-        return view('admin.users.edit', ['user' => $user]);
+        return view('admin.users.edit', [
+            'user' => $user,
+            'roles' => Role::all(),
+            ]);
     }
 
     /**
@@ -80,6 +84,9 @@ class UsersController extends Controller
         $editUser -> email = $request ->input('email');
         $editUser -> birthdate = $request ->input('birthdate');
         $editUser -> push();
+
+        $editUser -> roles() -> detach();
+        $editUser -> roles() -> attach($request->input('roles'));
 
         return redirect() -> route('admin.users.index');
     }

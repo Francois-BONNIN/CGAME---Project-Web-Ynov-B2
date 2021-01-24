@@ -41,6 +41,22 @@
                                 <input id="birthdate" type="date" class="form-control" name="birthdate" value="{{ $user -> birthdate }}">
                             </div>
                         </div>
+                        
+                        <label for="roles" class="col-md-4 col-form-label text-md-right">Role(s) :</label>
+                        @foreach ($roles as $role)
+                            <div class="form-group form-check">
+                                <div class="col-md-8">
+                                    <input id={{ $role -> id }} type="checkbox" class="form-check-input" name="roles[]" value="{{ $role -> id }}"
+                                    @foreach ($user -> roles as $userRole)
+                                        @if ($role -> name == $userRole -> name)
+                                            checked
+                                        @endif
+                                    @endforeach
+                                    >
+                                </div>
+                                <label for="{{ $role -> id }}" class="col-md-10 form-check-label text-md-center">{{ $role -> name }}</label>
+                            </div>
+                        @endforeach
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
