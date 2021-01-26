@@ -6,6 +6,7 @@ use App\Role;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 
 class UsersController extends Controller
 {
@@ -63,6 +64,10 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
+        if(Gate::denies('manage-users')){
+            return redirect() -> route('admin.users.index');
+        }
+
         return view('admin.users.edit', [
             'user' => $user,
             'roles' => Role::all(),
@@ -99,6 +104,10 @@ class UsersController extends Controller
      */
     public function destroy(User $user)
     {
+        if(Gate::denies('manage-users')){
+            return redirect() -> route('admin.users.index');
+        };
+
         $deleteUser = User::find($user ->id);
         $deleteUser -> delete();
 

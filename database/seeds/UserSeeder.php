@@ -29,11 +29,20 @@ class UserSeeder extends Seeder
             'email'=> 'member@test.com',
             'password' => Hash::make('member'),
         ]);
+
+        $test = User::create([
+            'firstname' => 'test',
+            'lastname' => 'test',
+            'birthdate' => '2000-01-01',
+            'email'=> 'test@test.com',
+            'password' => Hash::make('test'),
+        ]);
         
         $adminRole = Role::where('name','admin')-> first();
         $memberRole = Role::where('name','member')-> first();
 
         $admin -> roles() -> attach($adminRole);
         $member -> roles() -> attach($memberRole);
+        $test -> roles() -> attach($memberRole);
     }
 }

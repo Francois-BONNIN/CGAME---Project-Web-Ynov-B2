@@ -55,6 +55,13 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    
+                                    <a class="dropdown-item" href="{{ route('profile.index') }}">My Profile</a>
+                                    
+                                    @can('manage-users')
+                                    <a class="dropdown-item" href="{{ route('admin.users.index') }}">Liste des utilisateurs</a>
+                                    @endcan
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -64,7 +71,6 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
-                                    <a class="dropdown-item" href="{{ route('admin.users.index') }}">Liste des utilisateurs</a>
                                 </div>
                             </li>
                         @endguest
