@@ -10,9 +10,17 @@ anime({
 });
 
 setTimeout(()=>{
-  document.getElementsByClassName('logo')[0].className = 'hidden';
+  document.getElementsByClassName('parent')[0].classList.add('hidden');
 }, 4200);
 
 setTimeout(()=>{
+  document.getElementsByClassName('parent')[0].className = 'delete';
+}, 5000);
+
+setTimeout(()=>{
   document.getElementsByClassName('logoNav')[0].classList.replace('logoNav', 'visible');
+},5000);
+
+setTimeout(()=>{
+  document.getElementsByClassName('album')[0].classList.replace('hidden', 'visible');
 },5000);

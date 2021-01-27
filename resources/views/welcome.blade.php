@@ -3,7 +3,7 @@
 @section('welcome')
     <div class="parent mt-auto">
             <div class="logo m-md" id= 'lineDrawing'>
-                <svg id="Logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-380 -125 1470 400">
+                <svg id="Logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-350 -125 1470 400">
                     <g class="lines">
                     <path class="cls-1" d="M288.4017,102.7l-17.7241,16.0471c-1.4276-1.2589-2.6066-2.3148-3.8027-3.3508-12.3464-10.6938-31.43-10.3733-41.872,1.2039-8.2954,9.197-8.9178,20.2169-4.653,31.276,4.1947,10.8773,12.8965,16.1991,24.4619,16.2668,4.35.0254,8.7195-1.0187,13.0569-1.7192,2.4948-.403,3.4142-1.9948,3.3585-4.5918-.1468-6.8345.0483-13.6761-.0851-20.5111-.0551-2.82,1.0185-3.7628,3.7717-3.6975q8.8437.21,17.6956,0c2.7112-.061,3.83.797,3.8025,3.6631-.1144,11.7972.0028,23.5966-.1284,35.3935a5.0914,5.0914,0,0,1-1.74,3.6529c-18.8,12.9807-52.6119,17.2771-74.0816,1.6067-17.6182-12.8591-23.814-30.7013-20.21-51.6433,3.7034-21.5194,17.464-34.8232,38.2042-39.9509,19.8609-4.91,38.9144-2.5463,55.299,11.2352a33.6543,33.6543,0,0,1,2.8388,2.8368C287.1282,100.9892,287.5726,101.6443,288.4017,102.7Z"/>
                     <path class="cls-1" d="M178.4247,103.08l-18.0711,16.3456c-7.4383-8.5816-16.4972-12.77-27.6375-11.3667a25.528,25.528,0,0,0-16.78,8.6022c-9.2664,10.7227-8.8614,30.0967.8837,39.9459,11.1365,11.2554,27.92,9.9891,43.7444-3.5949,2.9012,2.5927,5.8686,5.2233,8.8118,7.8806,2.8668,2.5883,5.7089,5.204,9.4078,8.58-4.1841,3.5256-7.7285,7.1531-11.8634,9.8879-20.3055,13.43-58.806,12.7409-77.11-13.0745C71.2559,140.1162,79.2956,94,122.96,85.463c18.3832-3.5942,35.82-.6266,50.4557,12.3439C175.0854,99.2865,176.507,101.0458,178.4247,103.08Z"/>
@@ -18,6 +18,41 @@
                 </svg>
             </div>
     </div>
+    <div>
+         <div class="album py-5 hidden">
+            <div class="container">
+    
+                <div class="row row-cols-1 row-cols-sm-3 row-cols-md-3 g-3">
+                    @foreach ($games as $game)
+                    <div class="col">
+                        <div class="card shadow-sm mb-4">
+                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
+                            role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                            <title>Placeholder</title>
+                            <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef">Image</text>
+                            </svg>
+            
+                            <div class="card-body mb-3">
+                                <h2>{{ $game -> name }}</h2>
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                                    content. This content is a little bit longer.</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <a href="{{ route('games.show', $game) }}" class="btn btn-sm btn-outline-primary">Voir</a>
+                                        <a href="" class="btn btn-sm btn-outline-danger">Acheter</a>
+                                    </div>
+                                    <small class="text-muted">{{ $game -> grade }}<i class="fas fa-star"></i></small>
+                                    <h4 class="text-muted">{{ $game -> price }}€</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.js"></script>
     <script src="/js/index.js"></script>
 @endsection

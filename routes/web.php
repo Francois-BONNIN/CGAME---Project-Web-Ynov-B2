@@ -1,5 +1,6 @@
 <?php
 
+use App\Game;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,13 +15,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome', ['games' => Game::all()]);
 })->name('welcome');
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('profile', 'ProfileController');
+Route::resource('games', 'GameController');
 
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')-> group(function(){
     Route::resource('users','UsersController');

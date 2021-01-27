@@ -1,5 +1,5 @@
 html, body {
-    background-color: #011C26;
+    background-color: #173840;
     color: #636b6f;
     font-family: 'Nunito', sans-serif;
     font-weight: 200;
@@ -150,10 +150,15 @@ input[type=checkbox]:checked + label:before {
     transition: visibility 0s 1s, opacity 1s linear;
 }
 
+.delete {
+    display: none;
+    transition: display 0s 1s;
+}
+
 .visible {
     visibility: visible;
     opacity: 1;
-    transition: opacity 3s linear;
+    transition: opacity 1000ms linear;
 }
 
 .logoNav{
