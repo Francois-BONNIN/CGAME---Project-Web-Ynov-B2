@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Game;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class GameController extends Controller
 {
@@ -14,7 +15,7 @@ class GameController extends Controller
      */
     public function index()
     {
-        //
+        return view('games.index', ["games" => Game::paginate(15)]);
     }
 
     /**
@@ -24,7 +25,9 @@ class GameController extends Controller
      */
     public function create()
     {
-        //
+        if(Gate::denies('manage-users')){
+            return redirect() -> route('games.create');
+        }
     }
 
     /**
@@ -46,7 +49,7 @@ class GameController extends Controller
      */
     public function show(Game $game)
     {
-        //
+        return view('games.show', ["game"=> $game]);
     }
 
     /**
@@ -69,7 +72,7 @@ class GameController extends Controller
      */
     public function update(Request $request, Game $game)
     {
-        //
+        return redirect()-> route('games.index');
     }
 
     /**
