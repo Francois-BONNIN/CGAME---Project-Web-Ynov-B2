@@ -25,9 +25,11 @@ class GameController extends Controller
      */
     public function create()
     {
-        if(Gate::denies('manage-users')){
-            return redirect() -> route('games.create');
+        if(Gate::denies('manage-items')){
+            return redirect() -> route('games.index');
         }
+
+        return view('games.create');
     }
 
     /**
@@ -38,7 +40,16 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $createGame = new Game;
+        $createGame -> name = $request ->input('name');
+        $createGame -> price = $request ->input('price');
+        $createGame -> quantity = $request ->input('quantity');
+        $createGame -> grade = $request ->input('grade');
+        $createGame -> description = $request ->input('description');
+        $createGame -> image = $request ->input('image');
+        $createGame -> save();
+
+        return redirect() -> route('admin.users.index');
     }
 
     /**
@@ -60,7 +71,7 @@ class GameController extends Controller
      */
     public function edit(Game $game)
     {
-        //
+        return view('games.edit', ["game"=> $game]);
     }
 
     /**
@@ -72,7 +83,15 @@ class GameController extends Controller
      */
     public function update(Request $request, Game $game)
     {
-        return redirect()-> route('games.index');
+        $editGames = Game::find($game ->id);
+        $editGames -> name = $request ->input('name');
+        $editGames -> price = $request ->input('price');
+        $editGames -> grade = $request ->input('grade');
+        $editGames -> quantity = $request ->input('quantity');
+        $editGames -> description = $request ->input('description');
+        $editGames -> push();
+
+        return redirect() -> route('games.index');
     }
 
     /**

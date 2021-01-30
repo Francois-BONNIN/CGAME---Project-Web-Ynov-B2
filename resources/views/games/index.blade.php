@@ -1,5 +1,15 @@
 @extends('layouts.app')
 
+@section('item-nav')
+  @can('manage-items')
+    <li class="nav-item links">
+      <a href="{{ route('games.create')}}" class="nav-link">
+        <i class="far fa-lg red-icon fa-plus-square"></i>
+      </a>
+    </li>
+  @endcan  
+@endsection
+
 @section('content')
 <div class="container">
     <h2>Liste des jeux :</h2>
@@ -26,21 +36,21 @@
             <td>{{ $game -> quantity }}</td>
             <td class="">
               <div class="d-flex justify-content-around">
-                <a href="#" class="">
+                <a href="" class="">
                     <i class="fas fa-shopping-cart fa-lg red-icon"></i>
                 </a>
                 <a href="{{ route('games.show', $game )}}" class="">
                   <i class="far fa-eye fa-lg red-icon"></i>
                 </a>
                 @can('manage-items')
-                  <a href="#" class="">
+                  <a href="{{ route('games.edit', $game)}}" class="">
                     <i class="far fa-edit fa-lg red-icon"></i>
                   </a>
                   <form action="{{ route('games.destroy', $game)}}" method="POST" class="d-inline" id="myform">
                     @csrf
                     @method('DELETE')
-                    <a onclick="document.getElementById('myform').submit(); return  confirm(`Voulez-vous supprimer le jeu {{ $game -> name }} ? `)"><i class="far fa-trash-alt fa-lg red-icon"></i></a>
-                </form>
+                    <button class="btn-link fakebtn"type="submit" onclick="return confirm(`Voulez-vous supprimer le jeu {{ $game -> name }} ? `)"><i class="far fa-trash-alt fa-lg red-icon"></i></button>
+                  </form>
                 @endcan
               </div>
             </td>

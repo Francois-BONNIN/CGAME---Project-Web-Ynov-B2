@@ -37,10 +37,10 @@
                                 
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                      <a href="{{ route('games.show', $game )}}"<button type="button" class="btn btn-sm btn-outline-light">Details</a>
-                                      <button type="button" class="btn btn-sm btn-outline-danger">Acheter</button>
+                                      <a href="{{ route('games.show', $game )}}" type="button" class="btn btn-sm btn-outline-light">Details</a>
+                                      <a type="button" class="btn btn-sm btn-outline-danger">Acheter</a>
                                     </div>
-                                    <h3 class="mb-0 price">{{ $game -> price }}€</h3>
+                                    <h3 class="mb-0 price"><strong>{{ $game -> price }}€</strong></h3>
                                 </div>
                             </div>
                         </div>

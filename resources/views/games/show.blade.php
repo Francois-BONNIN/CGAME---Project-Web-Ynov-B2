@@ -18,9 +18,9 @@
             <p>{{ $game -> description }}</p>
 
             <form class="d-flex justify-content-left">
-            <button class="btn btn-primary my-0 p" type="submit"> 
-                Ajouter au panier <i class="fas fa-shopping-cart ml-1"></i>
-            </button>
+              <button class="btn btn-primary my-0 p" type="submit"> 
+                  Ajouter au panier <i class="fas fa-shopping-cart ml-1"></i>
+              </button>
             </form>
           </div>
         </div>

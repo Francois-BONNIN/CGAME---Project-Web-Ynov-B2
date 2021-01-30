@@ -44,7 +44,7 @@ class GameSeeder extends Seeder
                     'name' => $name[$i],
                     'description' => $description[$i],
                     'price' => $price[$i],
-                    'grade' => rand(35,50)/10,
+                    'grade' => rand(80,100)/10,
                     'quantity' => rand(1, 15),
                     'image' => $image[$i]
                 ]);

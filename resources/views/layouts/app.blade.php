@@ -40,6 +40,7 @@
                         <li class="nav-item links">
                             <a class="nav-link" href="{{ route('games.index') }}">Jeux</a>
                         </li>
+                        @yield('item-nav')
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -60,12 +61,13 @@
                                     {{ Auth::user()->firstname }} {{ Auth::user()->lastname }} 
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" >
                                     
-                                    <a class="dropdown-item" href="{{ route('profile.index') }}">My Profile</a>
+                                    <a class="dropdown-item" href="{{ route('profile.index') }}">Profil</a>
                                     
                                     @can('manage-items')
                                     <a class="dropdown-item" href="{{ route('admin.users.index') }}">Liste des utilisateurs</a>
+                                    <a class="dropdown-item" href="{{ route('games.index') }}">Liste des jeux</a>
                                     @endcan
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
