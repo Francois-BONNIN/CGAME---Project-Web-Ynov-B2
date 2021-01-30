@@ -24,3 +24,5 @@ setTimeout(()=>{
 setTimeout(()=>{
   document.getElementsByClassName('album')[0].classList.replace('hidden', 'visible');
 },5000);
+
+document.getElementsByClassName('py-4')[0].className = 'delete';

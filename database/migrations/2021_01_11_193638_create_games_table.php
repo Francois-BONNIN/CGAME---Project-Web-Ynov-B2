@@ -17,7 +17,7 @@ class CreateGamesTable extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->integer('price');
+            $table->float('price');
             $table->float('grade')->nullable();
             $table->integer('quantity');
             $table->string('image')->nullable();

@@ -16,6 +16,7 @@
     <link href="/css/style.css" rel="stylesheet">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
@@ -31,9 +32,14 @@
                 <div class="collapse navbar-collapse links" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav cgameLogo mr-auto">
-                        <a class="navbar-brand" href="{{ url('/') }}">
-                            <img src="/images/LogoVoid.svg" height="30px">
-                        </a>
+                        <li>
+                            <a class="navbar-brand" href="{{ url('/') }}">
+                                <img src="/images/LogoVoid.svg" height="30px">
+                            </a>
+                        </li>
+                        <li class="nav-item links">
+                            <a class="nav-link" href="{{ route('games.index') }}">Jeux</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -58,7 +64,7 @@
                                     
                                     <a class="dropdown-item" href="{{ route('profile.index') }}">My Profile</a>
                                     
-                                    @can('manage-users')
+                                    @can('manage-items')
                                     <a class="dropdown-item" href="{{ route('admin.users.index') }}">Liste des utilisateurs</a>
                                     @endcan
 
