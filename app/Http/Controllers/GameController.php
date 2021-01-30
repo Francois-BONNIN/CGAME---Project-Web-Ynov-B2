@@ -83,6 +83,13 @@ class GameController extends Controller
      */
     public function destroy(Game $game)
     {
-        //
+        if(Gate::denies('manage-items')){
+            return redirect() -> route('games.index');
+        };
+
+        $deleteGame = Game::find($game ->id);
+        $deleteGame -> delete();
+
+        return redirect() -> route('games.index');
     }
 }

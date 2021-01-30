@@ -243,7 +243,7 @@ label {
 }
 
 button {
-  border-radius: 0;
+  border-radius: 100%;
 }
 
 button:focus {
@@ -580,8 +580,6 @@ pre code {
 .container-md,
 .container-sm {
   width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
 }
@@ -2035,7 +2033,7 @@ pre code {
 .table-dark th,
 .table-dark td,
 .table-dark thead th {
-  border-color: #454d55;
+  border-color: #011C26;
 }
 
 .table-dark.table-bordered {
@@ -4454,7 +4452,7 @@ input[type=button].btn-block {
 
 .nav-link {
   display: block;
-  padding: 0.5rem 1rem;
+  padding: 0.7rem 1rem;
 }
 
 .nav-link:hover,

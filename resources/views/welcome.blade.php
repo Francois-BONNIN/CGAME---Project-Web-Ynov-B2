@@ -26,7 +26,7 @@
                     @foreach ($games as $game)
                     <div class="col">
                         <div class="card card-shadow mb-4">
-                            <img class="card-img-top" src="{{ $game -> image }}"/>
+                            <a href="{{ route('games.show', $game )}}"><img class="card-img-top" src="{{ $game -> image }}"/></a>
             
                             <div class="card-body">
                                 <div class="align-items-center">
