@@ -37,8 +37,17 @@
                                 
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                      <a href="{{ route('games.show', $game )}}" type="button" class="btn btn-sm btn-outline-light">Details</a>
-                                      <a type="button" class="btn btn-sm btn-outline-danger">Acheter</a>
+                                        <a href="{{ route('games.show', $game )}}" type="button" class="btn btn-sm btn-outline-light">Details</a>
+                                        @guest
+                                            <a type="button" href="{{ route('login') }}" class="btn btn-sm btn-outline-danger">Acheter</a>
+                                        @endguest
+                                        @auth
+                                            <form action="{{ route('purchase.store') }}" method="POST" class="d-flex justify-content-left">
+                                                @csrf
+                                                <input type="hidden" name="game_id" value="{{ $game-> id }}">
+                                                <button class="btn btn-sm btn-outline-danger " type="submit">Panier</button>
+                                            </form>
+                                        @endauth
                                     </div>
                                     <h3 class="mb-0 price"><strong>{{ $game -> price }}€</strong></h3>
                                 </div>

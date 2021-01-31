@@ -50,6 +50,11 @@ class User extends Authenticatable
         return $this->hasMany(Review::class);
     }
 
+    public function purchases()
+    {
+        return $this->hasMany(Purchase::class);
+    }
+
     public function isAdmin(){
         return $this->roles()->where('name','admin')->first();
     }

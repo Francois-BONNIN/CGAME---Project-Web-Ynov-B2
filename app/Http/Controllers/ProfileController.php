@@ -6,6 +6,7 @@ use App\User;
 use App\Review;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -32,7 +33,7 @@ class ProfileController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {
+    { 
         $user = $request->user();
         $reviews = Review::where('user_id',$user->id)->get();
         return view('profile.home', ['user'=>$user,'reviews'=> $reviews]);

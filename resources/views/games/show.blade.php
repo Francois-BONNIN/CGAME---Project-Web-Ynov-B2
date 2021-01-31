@@ -16,12 +16,24 @@
 
             <p class="lead font-weight-bold">Description</p>
             <p>{{ $game -> description }}</p>
-
-            <form class="d-flex justify-content-left">
-              <button class="btn btn-outline-danger my-0 p" type="submit"> 
+            
+            @guest
+              <form action="{{ route('login') }}" class="d-flex justify-content-left">
+                <button class="btn btn-outline-danger my-0 p" type="submit"> 
+                    Ajouter au panier <i class="fas fa-shopping-cart ml-1"></i>
+                </button>
+              </form>
+            @endguest
+            @auth
+              <form action="{{ route('purchase.store') }}" method="POST" class="d-flex justify-content-left">
+                @csrf
+                <input type="hidden" name="game_id" value="{{ $game-> id }}">
+                <button class="btn btn-outline-danger my-0 p" type="submit"> 
                   Ajouter au panier <i class="fas fa-shopping-cart ml-1"></i>
-              </button>
-            </form>
+                </button>
+              </form>
+            @endauth
+            
           </div>
         </div>
       </div>

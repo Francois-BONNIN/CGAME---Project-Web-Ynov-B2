@@ -202,11 +202,13 @@ box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
 .red-icon {
+    transition: 0.3s ;
     color :#BF1111;
 }
 
 .red-icon:hover {
     color :#8C1F1F;
+    transform: scale(1.2)
 }
 
 .fa-eye {
@@ -215,14 +217,6 @@ box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 
 .fa-eye:hover {
     color :#636b6f;
-}
-
-i{
-    transition: 0.3s;
-}
-
-i:hover{
-    transform: scale(1.2);
 }
 
 .fakebtn {

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Game;
 use App\Purchase;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class PurchaseController extends Controller
 {
@@ -15,7 +17,7 @@ class PurchaseController extends Controller
      */
     public function index()
     {
-        //
+        return view('purchases.index');
     }
 
     /**
@@ -36,7 +38,20 @@ class PurchaseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $duplicata = Cart::search(function ($cartItem, $rowId) use($request){
+            return $cartItem->id == $request -> game_id;
+        });
+
+        if($duplicata -> isNotEmpty()){
+            return redirect()->route('games.index')->with('success','Le produit a déjà ajouté');
+        }
+
+        $game = Game::find($request -> game_id);
+
+        Cart::add($game -> id, $game -> name, 1, $game -> price)
+            -> associate('App\Game');
+
+        return redirect()->route('games.index')->with('success','Le produit a bien été ajouté');
     }
 
     /**

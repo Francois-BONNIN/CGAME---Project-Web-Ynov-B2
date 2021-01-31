@@ -11,6 +11,11 @@ class Game extends Model
         return $this->belongsToMany('App\User');
     }
 
+    public function purchases()
+    {
+        return $this->belongsToMany('App\Purchase');
+    }
+
     public function reviews()
     {
         return $this->hasMany('App\Review');

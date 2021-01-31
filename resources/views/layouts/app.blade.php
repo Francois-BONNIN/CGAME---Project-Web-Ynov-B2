@@ -56,6 +56,7 @@
                                 </li>
                             @endif
                         @else
+                            <a href="{{ route('purchase.index') }}" class="solde"><strong> {{ Cart::count() }} </strong><i class="fas fa-shopping-cart"></i></a>
                             <a class="solde"> <i class="fas fa-coins"></i> : {{ Auth::user()->balance }} €</a>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

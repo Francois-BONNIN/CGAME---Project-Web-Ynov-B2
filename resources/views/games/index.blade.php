@@ -11,6 +11,12 @@
 @endsection
 
 @section('content')
+@if (session('success'))
+    <div class="container alert alert-success">
+      {{ session('success') }}
+    </div>
+@endif
+
 <div class="container">
   <div class="d-flex justify-content-between">
     <h2>Liste des jeux :</h2>
@@ -32,7 +38,7 @@
         </tr>
       </thead>
       <tbody align="center">
-          @foreach ($games as $game)
+        @foreach ($games as $game)
         <tr>
           <td><a href="{{ route('games.show', $game )}}"><img src="{{ $game -> image }}" class="img-shadow" width="80px"></a></td>
           <td><a href="{{ route('games.show', $game )}}" class="text-danger font-weight-bold">{{ $game -> name }}</a></td>
@@ -42,22 +48,31 @@
           <td>{{ $game -> quantity }}</td>
           <td class="">
             <div class="d-flex justify-content-around">
-              <a href="" class="">
+              @guest
+              <a href="{{ route('login') }}">
                   <i class="fas fa-shopping-cart fa-lg red-icon"></i>
               </a>
-              <a href="{{ route('games.show', $game )}}" class="">
-                <i class="far fa-eye fa-lg red-icon"></i>
-              </a>
-              @can('manage-items')
-                <a href="{{ route('games.edit', $game)}}" class="">
-                  <i class="far fa-edit fa-lg red-icon"></i>
+              @endguest
+              @auth
+              <form action="{{ route('purchase.store') }}" method="POST" class="d-inline">
+                @csrf
+                <input type="hidden" name="game_id" value="{{ $game-> id }}">
+                <button class="btn-link fakebtn" type="submit"><i class="fas fa-shopping-cart fa-lg red-icon"></i></button>
+              </form>
+              @endauth
+                <a href="{{ route('games.show', $game )}}" class="">
+                  <i class="far fa-eye fa-lg red-icon"></i>
                 </a>
-                <form action="{{ route('games.destroy', $game)}}" method="POST" class="d-inline" id="myform">
-                  @csrf
-                  @method('DELETE')
-                  <button class="btn-link fakebtn" type="submit" onclick="return confirm(`Voulez-vous supprimer le jeu {{ $game -> name }} ? `)"><i class="far fa-trash-alt fa-lg red-icon"></i></button>
-                </form>
-              @endcan
+                @can('manage-items')
+                  <a href="{{ route('games.edit', $game)}}" class="">
+                    <i class="far fa-edit fa-lg red-icon"></i>
+                  </a>
+                  <form action="{{ route('games.destroy', $game)}}" method="POST" class="d-inline" id="myform">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn-link fakebtn" type="submit" onclick="return confirm(`Voulez-vous supprimer le jeu {{ $game -> name }} ? `)"><i class="far fa-trash-alt fa-lg red-icon"></i></button>
+                  </form>
+                @endcan
             </div>
           </td>
         </tr>

@@ -125,4 +125,5 @@ class GameController extends Controller
 
         return redirect() -> route('games.index');
     }
+
 }

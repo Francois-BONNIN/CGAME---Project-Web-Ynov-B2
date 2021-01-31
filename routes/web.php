@@ -2,6 +2,7 @@
 
 use App\Game;
 use Illuminate\Support\Facades\Route;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,12 +21,18 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-items')-> group(function(){
+    Route::resource('users','UsersController');
+});
 
 Route::resource('profile', 'ProfileController');
 Route::resource('games', 'GameController');
 Route::resource('reviews', 'ReviewController');
-Route::resource('purchases', 'PurchaseController');
 
-Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-items')-> group(function(){
-    Route::resource('users','UsersController');
+/* Purchase Route */
+Route::get('panier','PurchaseController@index')->name('purchase.index');
+Route::post('/cart/add', 'PurchaseController@store')-> name('purchase.store');
+Route::get('/cart/clear', function(){
+    Cart::destroy();
+    return redirect()->route('games.index');
 });
