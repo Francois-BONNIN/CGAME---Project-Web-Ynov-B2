@@ -243,3 +243,25 @@ i:hover{
     border: 1px solid transparent;
     line-height: 1.6;
 }
+
+.solde {
+    color: #BF1111;
+    display: block;
+    padding: 0.7rem 1rem;
+    
+}
+
+.solde:hover {
+    color: #BF1111;
+    text-decoration: none;
+}
+
+.select {
+    color: #fff;
+    background : #173840;
+    border: 2px solid #BF1111;
+    border-radius: 10px;
+    -webkit-appearance:none;
+    width:3rem;
+    transition: 0.3s;
+}

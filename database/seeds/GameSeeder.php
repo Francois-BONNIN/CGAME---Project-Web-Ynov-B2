@@ -6,6 +6,21 @@ use Illuminate\Database\Seeder;
 class GameSeeder extends Seeder
 {
 
+    public function generatorCode(){
+        $letter = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q',
+        'R','S','T','U','V','W','X','Y','Z','1','2','3','4','5','6','7','8','9','0'];
+        $code = $firstPart = $secondPart = $lastPart = "";
+
+        for($j = 0; $j <= 5; $j++){
+            $firstPart = $firstPart . $letter[rand(0,35)];
+            $secondPart = $secondPart . $letter[rand(0,35)];
+            $lastPart = $lastPart . $letter[rand(0,35)];
+        }
+        $code = $firstPart . "-" . $secondPart . "-" . $lastPart;
+        
+        return $code;
+    }
+
     public function run()
     {
         $name = ['Celeste','Hollow Knight','The Witcher 3','Cyberpunk 2077','Little Nightmares','Horizon Zero Dawn','ARK Survival Evolved',"No man's sky", 'Stardew Valley', 'Anno 1800', 'Satisfactory'];
@@ -46,9 +61,21 @@ class GameSeeder extends Seeder
                     'price' => $price[$i],
                     'grade' => rand(80,100)/10,
                     'quantity' => rand(1, 15),
-                    'image' => $image[$i]
+                    'image' => $image[$i],
+                    'activationcode' => GameSeeder::generatorCode(),
                 ]);
+                
+            $faker = Faker\Factory::create();
 
-            }
+            DB::table('reviews') -> insert([
+                'game_id' => $game -> id,
+                'user_id' => "2",
+                'grade' => $faker -> randomFloat($nbMaxDecimals = 1, $min = 8, $max = 10),
+                'comments' => $faker -> paragraph,
+                'created_at' => new DateTime,
+            ]);
+        }
+    
+
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Review;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -33,7 +34,8 @@ class ProfileController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
-        return view('profile.home', compact('user'));
+        $reviews = Review::where('user_id',$user->id)->get();
+        return view('profile.home', ['user'=>$user,'reviews'=> $reviews]);
     }
 
     /**

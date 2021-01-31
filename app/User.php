@@ -45,6 +45,11 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Game');
     }
 
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
     public function isAdmin(){
         return $this->roles()->where('name','admin')->first();
     }

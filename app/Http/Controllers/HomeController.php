@@ -24,6 +24,6 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
-        return view('profile.home', compact('user'));
+        return redirect()->route('profile.index');
     }
 }

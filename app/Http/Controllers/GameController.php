@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Game;
+use App\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -13,9 +14,18 @@ class GameController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('games.index', ["games" => Game::paginate(15)]);
+        $search = $request->get('search');
+
+        if($search){
+            $games = Game::where('name', 'like', '%'.$search.'%') 
+            -> orWhere('price', 'like', '%'.$search.'%')
+            -> get();
+        }else{
+            $games = Game::paginate(10);
+        }
+        return view('games.index', ["games" => $games]);
     }
 
     /**
@@ -60,7 +70,11 @@ class GameController extends Controller
      */
     public function show(Game $game)
     {
-        return view('games.show', ["game"=> $game]);
+        $reviews = Review::where('game_id',$game->id)->get();
+        return view('games.show', [
+            "game"=> $game,
+            "reviews" => $reviews
+            ]);
     }
 
     /**

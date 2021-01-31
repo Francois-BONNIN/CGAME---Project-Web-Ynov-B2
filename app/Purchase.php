@@ -4,15 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Game extends Model
+class Purchase extends Model
 {
     public function users()
     {
         return $this->belongsToMany('App\User');
     }
 
-    public function reviews()
+    public function games()
     {
-        return $this->hasMany('App\Review');
+        return $this->belongsToMany('App\Game');
     }
 }

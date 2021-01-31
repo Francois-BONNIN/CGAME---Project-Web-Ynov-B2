@@ -20,6 +20,7 @@ class CreateGamesTable extends Migration
             $table->float('price');
             $table->float('grade')->nullable();
             $table->integer('quantity');
+            $table->string('activationcode');
             $table->string('image')->nullable();
             $table->timestamps();
         });
