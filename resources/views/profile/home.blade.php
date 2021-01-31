@@ -43,7 +43,7 @@
         </div>
         <div class="col-lg-8 mb-4">
             <div class="card">
-                <h1 class="card-header">Avis</h1>
+                <h1 class="card-header">Mes avis</h1>
 
                 <div class="card-body">
                     <table class="table table-data2 table-striped table-dark" style="width: 100%">

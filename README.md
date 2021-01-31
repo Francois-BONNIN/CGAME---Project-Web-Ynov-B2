@@ -6,8 +6,11 @@
 1. Create a new _.env_ with _.env.example_
 2. Installation :
     - composer : `composer install`
-    - node (npm) : `npm install`
 
 3. Database :
     - `php artisan migrate:fresh`
     - `php db:seed`
+
+4. Identifiants :
+    - admin@test.com -> rootroot
+    - member@test.com -> member
