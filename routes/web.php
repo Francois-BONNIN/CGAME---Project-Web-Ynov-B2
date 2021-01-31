@@ -30,8 +30,9 @@ Route::resource('games', 'GameController');
 Route::resource('reviews', 'ReviewController');
 
 /* Purchase Route */
-Route::get('panier','PurchaseController@index')->name('purchase.index');
-Route::post('/cart/add', 'PurchaseController@store')-> name('purchase.store');
+Route::get('/cart','CartsController@show')->name('carts.show');
+Route::post('/cart/add', 'CartsController@store')-> name('carts.store');
+Route::delete('/cart/{rowId}', 'CartsController@destroy')-> name('carts.destroy');
 Route::get('/cart/clear', function(){
     Cart::destroy();
     return redirect()->route('games.index');

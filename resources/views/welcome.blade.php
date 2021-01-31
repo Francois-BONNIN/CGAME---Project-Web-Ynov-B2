@@ -42,7 +42,7 @@
                                             <a type="button" href="{{ route('login') }}" class="btn btn-sm btn-outline-danger">Acheter</a>
                                         @endguest
                                         @auth
-                                            <form action="{{ route('purchase.store') }}" method="POST" class="d-flex justify-content-left">
+                                            <form action="{{ route('carts.store') }}" method="POST" class="d-flex justify-content-left">
                                                 @csrf
                                                 <input type="hidden" name="game_id" value="{{ $game-> id }}">
                                                 <button class="btn btn-sm btn-outline-danger " type="submit">Panier</button>

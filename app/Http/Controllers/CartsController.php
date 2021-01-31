@@ -3,13 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Game;
-use App\Purchase;
+use App\Carts;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
-class PurchaseController extends Controller
+class CartsController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +22,7 @@ class PurchaseController extends Controller
      */
     public function index()
     {
-        return view('purchases.index');
+        return view('carts.index', ['user'=>Auth::user()]);
     }
 
     /**
@@ -57,21 +62,21 @@ class PurchaseController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Purchase  $purchase
+     * @param  \App\cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function show(Purchase $purchase)
+    public function show(cart $cart)
     {
-        //
+        return view('carts.show', ['user'=>Auth::user()]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Purchase  $purchase
+     * @param  \App\cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function edit(Purchase $purchase)
+    public function edit(cart $cart)
     {
         //
     }
@@ -80,10 +85,10 @@ class PurchaseController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Purchase  $purchase
+     * @param  \App\cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Purchase $purchase)
+    public function update(Request $request, cart $cart)
     {
         //
     }
@@ -91,11 +96,13 @@ class PurchaseController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Purchase  $purchase
+     * @param  \App\cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Purchase $purchase)
-    {
-        //
+    public function destroy( $rowId)
+    {   
+        Cart::remove($rowId);
+
+        return back() -> with('success','Le produit a été supprimé.');
     }
 }

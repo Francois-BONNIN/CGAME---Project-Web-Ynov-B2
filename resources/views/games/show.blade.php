@@ -25,7 +25,7 @@
               </form>
             @endguest
             @auth
-              <form action="{{ route('purchase.store') }}" method="POST" class="d-flex justify-content-left">
+              <form action="{{ route('carts.store') }}" method="POST" class="d-flex justify-content-left">
                 @csrf
                 <input type="hidden" name="game_id" value="{{ $game-> id }}">
                 <button class="btn btn-outline-danger my-0 p" type="submit"> 

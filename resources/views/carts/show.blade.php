@@ -20,36 +20,31 @@
             <!--Card content-->
             <form class="card-body">
               <div class="row">
-
-                <!--Grid column-->
+                <h2 class="col-md-12 mb-4 text-center"> Identité </h2>
+                
                 <div class="col-md-6 mb-2">
-
-                  <!--firstName-->
                   <div class="md-form ">
                     <label for="firstName" class="">Prénom</label>
-                    <input type="text" id="firstName" class="form-control">
+                    <input type="text" id="firstName" class="form-control" value="{{ $user -> firstname }}">
                   </div>
-
                 </div>
 
                 <div class="col-md-6 mb-2">
-
-                  <!--lastName-->
                   <div class="md-form">
                     <label for="lastName" class="">Nom</label>
-                    <input type="text" id="lastName" class="form-control">
+                    <input type="text" id="lastName" class="form-control" value="{{ $user -> lastname }}">
                   </div>
-
                 </div>
               </div>
 
               <!--email-->
               <div class="md-form mt-2 mb-5">
                 <label for="email" class="">Email</label>
-                <input type="text" id="email" class="form-control" value="">
+                <input type="text" id="email" class="form-control" value="{{ $user -> email }}">
               </div>
 
               <hr>
+              <h2 class="text-center my-4 "> Paiement </h2>
 
               <div class="d-block my-3">
                 <div class="custom-control custom-radio">
@@ -88,7 +83,7 @@
                   </div>
                 </div>
                 <div class="col-md-3 mb-3">
-                  <label for="cc-expiration">CVV</label>
+                  <label for="cc-cvv">CVV</label>
                   <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
                   <div class="invalid-feedback">
                     Code de sécurité requis
@@ -96,7 +91,7 @@
                 </div>
               </div>
               <hr class="mb-4">
-              <button class="btn btn-outline-danger btn-lg btn-block" type="submit">Continue to checkout</button>
+              <a href="" class="btn btn-outline-danger btn-lg btn-block" type="submit">Continue to checkout</a>
 
             </form>
 
@@ -111,43 +106,28 @@
 
           <!-- Heading -->
           <h4 class="d-flex justify-content-between align-items-center mb-3">
-            <span class="text-muted">Votre panier</span>
-            <span class="badge badge-secondary badge-pill">3</span>
+            <span class="">Votre panier</span>
+            <span class="badge badge-danger ">{{Cart::count()}}</span>
           </h4>
 
           <!-- Cart -->
           <ul class="list-group mb-3 z-depth-1">
+            @foreach (Cart::content() as $product)
             <li class="list-group-item d-flex justify-content-between lh-condensed">
               <div>
-                <h6 class="my-0">Product name</h6>
-                <small class="text-muted">Brief description</small>
+                <h6 class="my-0">{{ $product -> name }}</h6>
+                <form action="{{ route('carts.destroy', $product->rowId) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="text-danger fakebtn"><small>Supprimer</small></button>
+                </form>
               </div>
-              <span class="text-muted">$12</span>
+              <h6 >{{ $product -> price}}</h6>
             </li>
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Second product</h6>
-                <small class="text-muted">Brief description</small>
-              </div>
-              <span class="text-muted">$8</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Third item</h6>
-                <small class="text-muted">Brief description</small>
-              </div>
-              <span class="text-muted">$5</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between bg-light">
-              <div class="text-success">
-                <h6 class="my-0">Promo code</h6>
-                <small>EXAMPLECODE</small>
-              </div>
-              <span class="text-success">-$5</span>
-            </li>
+            @endforeach
             <li class="list-group-item d-flex justify-content-between">
-              <span>Total (USD)</span>
-              <strong>$20</strong>
+              <span>Total (€)</span>
+              <strong>{{ Cart::subtotal() }}</strong>
             </li>
           </ul>
           <!-- Cart -->
@@ -155,9 +135,9 @@
           <!-- Promo code -->
           <form class="card p-2">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Promo code" aria-label="Recipient's username" aria-describedby="basic-addon2">
+              <input type="text" class="form-control" placeholder="Bon de réduction" aria-label="Recipient's username" aria-describedby="basic-addon2">
               <div class="input-group-append">
-                <button class="btn btn-secondary btn-md waves-effect m-0" type="button">Redeem</button>
+                <button class="btn btn-outline-danger btn-md waves-effect m-0" type="button">Récupérer</button>
               </div>
             </div>
           </form>

@@ -50,9 +50,9 @@ class User extends Authenticatable
         return $this->hasMany(Review::class);
     }
 
-    public function purchases()
+    public function carts()
     {
-        return $this->hasMany(Purchase::class);
+        return $this->hasMany(Cart::class);
     }
 
     public function isAdmin(){

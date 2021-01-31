@@ -11,11 +11,6 @@
 @endsection
 
 @section('content')
-@if (session('success'))
-    <div class="container alert alert-success">
-      {{ session('success') }}
-    </div>
-@endif
 
 <div class="container">
   <div class="d-flex justify-content-between">
@@ -54,7 +49,7 @@
               </a>
               @endguest
               @auth
-              <form action="{{ route('purchase.store') }}" method="POST" class="d-inline">
+              <form action="{{ route('carts.store') }}" method="POST" class="d-inline">
                 @csrf
                 <input type="hidden" name="game_id" value="{{ $game-> id }}">
                 <button class="btn-link fakebtn" type="submit"><i class="fas fa-shopping-cart fa-lg red-icon"></i></button>

@@ -3999,12 +3999,17 @@ input[type=button].btn-block {
 
 .custom-control-input:checked ~ .custom-control-label::before {
   color: #fff;
-  border-color: #3490dc;
-  background-color: #3490dc;
+  border-color: #BF1111;
+  background-color: #BF1111;
 }
 
 .custom-control-input:focus ~ .custom-control-label::before {
   box-shadow: 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
+}
+
+.custom-control-input:not(:checked) ~ .custom-control-label::before {
+  border-color: #BF1111;
+  background-color: transparent;
 }
 
 .custom-control-input:focus:not(:checked) ~ .custom-control-label::before {
@@ -4092,7 +4097,7 @@ input[type=button].btn-block {
 }
 
 .custom-radio .custom-control-input:disabled:checked ~ .custom-control-label::before {
-  background-color: rgba(52, 144, 220, 0.5);
+  background-color: #BF1111 ;
 }
 
 .custom-switch {
@@ -5791,8 +5796,14 @@ a.badge-dark.focus {
   position: relative;
   display: block;
   padding: 0.75rem 1.25rem;
-  background-color: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.125);
+  background-color: #011C26 ;
+  border-bottom: 1px solid #BF1111;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: box-shadow 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.list-group-item:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
 .list-group-item:first-child {
