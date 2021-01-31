@@ -5,7 +5,13 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Liste des utilisateurs</div>
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <a href="{{ route('admin.users.create')}}" class="nav-link">
+                        <i class="far red-icon fa-plus-square"></i>
+                    </a>
+                    <h4 class="mb-0"> Liste des utilisateurs </h4>
+                    <span class="badge badge-danger">{{ $nb_users}}</span>
+                </div>
 
                 <div class="card-body">
                     <table class="table table-dark" style="width: 100%" >
@@ -39,6 +45,9 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="row d-flex justify-content-center">
+                        {{ $users -> links() }}
+                      </div>
                 </div>
             </div>
         </div>

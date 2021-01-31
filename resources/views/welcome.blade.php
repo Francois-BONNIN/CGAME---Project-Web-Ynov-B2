@@ -59,12 +59,7 @@
             </div>
         </div>
     </div>
-    <footer class="page-footer text-center mt-2 fadeIn">
-        <div class="footer-copyright py-3">
-          © 2021 François BONNIN - <a href="{{ url('/') }}"> Cgame.com </a>
-        </div>
-    </footer>
-  
+      
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.js"></script>
-    <script src="/js/index.js"></script>
+    <script src="/js/welcome.js"></script>
 @endsection

@@ -40,6 +40,21 @@
                         <li class="nav-item links">
                             <a class="nav-link" href="{{ route('games.index') }}">Jeux</a>
                         </li>
+
+                        @can('manage-items')
+                            <li class="nav-item links">
+                                <a href="{{ route('games.create')}}" class="nav-link">
+                                <i class="far fa-lg red-icon fa-plus-square"></i>
+                                </a>
+                            </li>
+
+                            <li class="nav-item links">    
+                                <a class="nav-link" href="{{ route('admin.users.index') }}">Utilisateurs</a>
+                            </li>
+                            <li class="nav-item links">    
+                                <a class="nav-link" href="{{ route('reviews.index') }}">Avis</a>
+                            </li>
+                        @endcan
                         @yield('item-nav')
                     </ul>
 
@@ -57,7 +72,7 @@
                             @endif
                         @else
                             <a href="{{ route('carts.show') }}" class="solde red-icon"><strong> {{ Cart::count() }} </strong><i class="fas fa-shopping-cart"></i></a>
-                            <a class="solde"> <i class="fas fa-coins"></i> : {{ Auth::user()->balance }} €</a>
+                            <a class="solde"><strong> {{ Auth::user()->balance }} </strong><i class="fas fa-euro-sign"></i></a>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->firstname }} {{ Auth::user()->lastname }} 
@@ -67,10 +82,6 @@
                                     
                                     <a class="dropdown-item" href="{{ route('profile.index') }}">Profil</a>
                                     
-                                    @can('manage-items')
-                                    <a class="dropdown-item" href="{{ route('admin.users.index') }}">Liste des utilisateurs</a>
-                                    <a class="dropdown-item" href="{{ route('games.index') }}">Liste des jeux</a>
-                                    @endcan
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -98,6 +109,7 @@
             @yield('content')
         </main>
     </div>
+    <script src="/js/index.js"></script>
 </body>
 @yield('welcome')
 </html>

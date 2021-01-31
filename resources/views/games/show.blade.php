@@ -14,6 +14,7 @@
             <h1 class="align-center"><strong>{{ $game -> name }}</strong></h1>
             <p class="lead"> <span class="mr-1">{{$game -> price}} €</span></p>
 
+            <p>{{ $game -> grade}} <i class="far fa-star"></i></p>
             <p class="lead font-weight-bold">Description</p>
             <p>{{ $game -> description }}</p>
             

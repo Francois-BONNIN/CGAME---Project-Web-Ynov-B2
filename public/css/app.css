@@ -451,7 +451,7 @@ hr {
   margin-top: 1rem;
   margin-bottom: 1rem;
   border: 0;
-  border-top: 3px solid #BF1111;
+  border-top: 2px solid #f1f1f1;
 }
 
 small,
@@ -3443,7 +3443,7 @@ input[type=button].btn-block {
   margin: 0.125rem 0 0;
   font-size: 0.9rem;
   color: #F2F2F2;
-  text-align: left;
+  text-align: center;
   list-style: none;
   background-color: #011C26;
   background-clip: padding-box;
@@ -5279,17 +5279,17 @@ input[type=button].btn-block {
   padding: 0.5rem 0.75rem;
   margin-left: -1px;
   line-height: 1.25;
-  color: #3490dc;
-  background-color: #fff;
-  border: 1px solid #dee2e6;
+  color: #BF1111;
+  background-color: transparent;
+  border: 1px solid #BF1111;
 }
 
 .page-link:hover {
   z-index: 2;
-  color: #1d68a7;
+  color: #f1f1f1;
   text-decoration: none;
-  background-color: #e9ecef;
-  border-color: #dee2e6;
+  background-color: #BF1111;
+  border-color: #BF1111;
 }
 
 .page-link:focus {
@@ -5311,17 +5311,17 @@ input[type=button].btn-block {
 
 .page-item.active .page-link {
   z-index: 3;
-  color: #fff;
-  background-color: #3490dc;
-  border-color: #3490dc;
+  color: #f1f1f1;
+  background-color: #BF1111;
+  border-color: #BF1111;
 }
 
 .page-item.disabled .page-link {
-  color: #6c757d;
+  color: #BF1111;
   pointer-events: none;
   cursor: auto;
-  background-color: #fff;
-  border-color: #dee2e6;
+  background-color: transparent;
+  border-color: #BF1111;
 }
 
 .pagination-lg .page-link {
@@ -5481,7 +5481,7 @@ a.badge-warning.focus {
 }
 
 .badge-danger {
-  color: #fff;
+  color: #011C26;
   background-color:#BF1111;
 }
 

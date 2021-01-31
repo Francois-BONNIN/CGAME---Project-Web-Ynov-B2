@@ -91,7 +91,7 @@
                 </div>
               </div>
               <hr class="mb-4">
-              <a href="" class="btn btn-outline-danger btn-lg btn-block" type="submit">Continue to checkout</a>
+              <a href="" class="btn btn-outline-danger btn-lg btn-block" type="submit">Valider</a>
 
             </form>
 
@@ -107,7 +107,6 @@
           <!-- Heading -->
           <h4 class="d-flex justify-content-between align-items-center mb-3">
             <span class="">Votre panier</span>
-            <span class="badge badge-danger ">{{Cart::count()}}</span>
           </h4>
 
           <!-- Cart -->

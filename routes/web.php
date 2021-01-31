@@ -16,7 +16,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 */
 
 Route::get('/', function () {
-    return view('welcome', ['games' => Game::all()]);
+    return view('welcome', ['games' => Game::paginate(6)]);
 })->name('welcome');
 
 Auth::routes();

@@ -35,6 +35,14 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="activationcode" class="col-md-4 col-form-label text-md-right">Code d'activation</label>
+
+                            <div class="col-md-6">
+                                <input id="activationcode" type="text" class="form-control" name="activationcode" placeholder="Code caché">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="grade" class="col-md-4 col-form-label text-md-right">Note</label>
 
                             <div class="col-md-6">
@@ -53,11 +61,6 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-outline-light">Modifier</button>
-                                <form action="{{ route('games.destroy', $game)}}" method="POST" class="d-inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-outline-danger mt-0" onclick="return  confirm(`Voulez-vous supprimer le compte {{ $game -> name }} ? `)"> Supprimer </button>
-                                </form>
                             </div>
                         </div>
                     </form>

@@ -34,6 +34,14 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="activationcode" class="col-md-4 col-form-label text-md-right">Code d'activation</label>
+
+                            <div class="col-md-6">
+                                <input id="activationcode" type="text" class="form-control" name="activationcode" >
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="grade" class="col-md-4 col-form-label text-md-right">Note</label>
 
                             <div class="col-md-6">

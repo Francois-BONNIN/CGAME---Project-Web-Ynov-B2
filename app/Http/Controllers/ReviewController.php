@@ -7,6 +7,7 @@ use App\Review;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class ReviewController extends Controller
 {
@@ -17,7 +18,10 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        //
+        if(Gate::denies('manage-items')){
+            return redirect() -> route('welcome');
+        };
+        return view('reviews.index', ['reviews'=> Review::paginate(10)]);
     }
 
     /**
@@ -85,7 +89,7 @@ class ReviewController extends Controller
         $editReview -> comments = $request ->input('comments');
         $editReview -> push();
 
-        return redirect() -> route('profile.index');
+        return redirect() -> route('profile.index')-> with('success','Commentaire modifié.');
     }
 
     /**
@@ -99,6 +103,6 @@ class ReviewController extends Controller
         $deleteReview = Review::find($review ->id);
         $deleteReview -> delete();
 
-        return redirect() -> back();
+        return back() -> with('success','Le commentaire a été supprimé.'); 
     }
 }

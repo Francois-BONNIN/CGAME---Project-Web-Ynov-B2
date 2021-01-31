@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGamePurchaseTable extends Migration
+class CreateCartsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateGamePurchaseTable extends Migration
      */
     public function up()
     {
-        Schema::create('game_purchase', function (Blueprint $table) {
+        Schema::create('carts', function (Blueprint $table) {
             $table->id();
-            $table->BigInteger('game_id')->unsigned();
-            $table->BigInteger('purchase_id')->unsigned();
+            $table->integer('user_id');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateGamePurchaseTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('game_purchase');
+        Schema::dropIfExists('carts');
     }
 }

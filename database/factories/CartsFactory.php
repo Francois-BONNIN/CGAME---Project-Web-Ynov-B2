@@ -3,9 +3,9 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use Faker\Generator as Faker;
-use App\Purchase;
+use App\Carts;
 
-$factory->define(Purchase::class, function (Faker $faker) {
+$factory->define(Carts::class, function (Faker $faker) {
     return [
         //
     ];

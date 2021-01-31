@@ -1,17 +1,6 @@
 @extends('layouts.app')
 
-@section('item-nav')
-  @can('manage-items')
-    <li class="nav-item links">
-      <a href="{{ route('games.create')}}" class="nav-link">
-        <i class="far fa-lg red-icon fa-plus-square"></i>
-      </a>
-    </li>
-  @endcan  
-@endsection
-
 @section('content')
-
 <div class="container">
   <div class="d-flex justify-content-between">
     <h2>Liste des jeux :</h2>
@@ -75,5 +64,8 @@
         @endforeach
       </tbody>
     </table>
+    <div class="row d-flex justify-content-center">
+      {{ $games -> links() }}
+    </div>
   </div>
 @endsection

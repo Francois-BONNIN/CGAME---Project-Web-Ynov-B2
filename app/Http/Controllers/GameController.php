@@ -21,7 +21,7 @@ class GameController extends Controller
         if($search){
             $games = Game::where('name', 'like', '%'.$search.'%') 
             -> orWhere('price', 'like', '%'.$search.'%')
-            -> get();
+            -> paginate(10);
         }else{
             $games = Game::paginate(10);
         }
@@ -54,6 +54,7 @@ class GameController extends Controller
         $createGame -> name = $request ->input('name');
         $createGame -> price = $request ->input('price');
         $createGame -> quantity = $request ->input('quantity');
+        $createGame -> activationcode = $request ->input('activationcode');
         $createGame -> grade = $request ->input('grade');
         $createGame -> description = $request ->input('description');
         $createGame -> image = $request ->input('image');
@@ -102,10 +103,19 @@ class GameController extends Controller
         $editGames -> price = $request ->input('price');
         $editGames -> grade = $request ->input('grade');
         $editGames -> quantity = $request ->input('quantity');
+
+        $code = $request ->input('activationcode');
+
+        if($code==null){
+            $editGames -> activationcode = $editGames -> activationcode;
+        }else{
+            $editGames -> activationcode = $code;
+        }
+
         $editGames -> description = $request ->input('description');
         $editGames -> push();
 
-        return redirect() -> route('games.index');
+        return redirect() -> route('games.index')->with('success', 'Le jeu a bien été mis à jour.');
     }
 
     /**
@@ -123,7 +133,7 @@ class GameController extends Controller
         $deleteGame = Game::find($game ->id);
         $deleteGame -> delete();
 
-        return redirect() -> route('games.index');
+        return redirect() -> route('games.index')-> with('success','Le jeu a été supprimé.');
     }
 
 }

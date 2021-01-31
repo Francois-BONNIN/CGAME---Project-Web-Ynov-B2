@@ -35,7 +35,7 @@ class ProfileController extends Controller
     public function index(Request $request)
     { 
         $user = $request->user();
-        $reviews = Review::where('user_id',$user->id)->get();
+        $reviews = Review::where('user_id',$user->id)->paginate(5);
         return view('profile.home', ['user'=>$user,'reviews'=> $reviews]);
     }
 
@@ -82,6 +82,6 @@ class ProfileController extends Controller
         $deleteProfile = $request->user();
         $deleteProfile -> delete();
 
-        return redirect()->route('welcome')-> with('success','Deleted account.');
+        return redirect()->route('welcome')-> with('success','Compte supprimée.');
     }
 }
