@@ -2,15 +2,13 @@
 
 
 ## Installation
-
-1. Create a new _.env_ with _.env.example_
-2. Installation :
+1. Installation :
     - composer : `composer install`
 
-3. Database :
+2. Database :
     - `php artisan migrate:fresh`
     - `php db:seed`
 
-4. Identifiants :
+3. Identifiants :
     - admin@test.com -> rootroot
     - member@test.com -> member
