@@ -57,8 +57,11 @@
 
       <div class="d-flex justify-content-between">
         <h2>Commentaires et Avis :</h2>
+        
         {{-- <form class="myform form-inline mt-2 mt-md-0 d-inline"> --}}
-        <a href="{{route('reviews.create')}}" class="d-inline solde"><i class="far fa-plus-square fa-2x red-icon "></i></a>
+        @can('connected')
+          <a href="{{route('reviews.create')}}" class="d-inline solde"><i class="far fa-plus-square fa-2x red-icon "></i></a>
+        @endcan
       </div>
         <table class="table table-data2 table-striped table-dark" style="width: 100%">
             <thead align="center">
@@ -78,6 +81,7 @@
                     <td>{{ $review -> comments }}</td>
                     <td>{{ $review -> created_at }}</td>
                     <td class="">
+                      @can('connected')                        
                       <div class="d-flex justify-content-around">
                         @if (Auth::user()->id == $review -> user -> id)
                         <a href="{{ route('reviews.edit', $review)}}" class="">
@@ -95,6 +99,7 @@
                             @method('DELETE')
                             <button class="btn-link fakebtn" type="submit"><i class="far fa-trash-alt fa-lg red-icon"></i></button>
                         </form>
+                        @endcan
                         @endcan
                       </div>
                     </td>

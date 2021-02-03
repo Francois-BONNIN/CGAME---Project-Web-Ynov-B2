@@ -28,6 +28,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:mana
 Route::resource('profile', 'ProfileController');
 Route::resource('games', 'GameController');
 Route::resource('reviews', 'ReviewController');
+Route::resource('purchases', 'PurchaseController');
 
 /* Purchase Route */
 Route::get('/cart','CartsController@show')->name('carts.show');

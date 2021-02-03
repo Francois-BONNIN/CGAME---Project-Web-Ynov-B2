@@ -91,7 +91,7 @@
                 </div>
               </div>
               <hr class="mb-4">
-              <a href="" class="btn btn-outline-danger btn-lg btn-block" type="submit">Valider</a>
+              <a href="{{ route('purchases.create') }}" class="btn btn-outline-danger btn-lg btn-block" type="submit">Valider</a>
 
             </form>
 
