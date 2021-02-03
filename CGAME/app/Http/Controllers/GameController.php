@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Game;
+use App\Review;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class GameController extends Controller
 {
@@ -12,9 +14,18 @@ class GameController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $search = $request->get('search');
+
+        if($search){
+            $games = Game::where('name', 'like', '%'.$search.'%') 
+            -> orWhere('price', 'like', '%'.$search.'%')
+            -> paginate(10);
+        }else{
+            $games = Game::paginate(10);
+        }
+        return view('games.index', ["games" => $games]);
     }
 
     /**
@@ -24,7 +35,11 @@ class GameController extends Controller
      */
     public function create()
     {
-        //
+        if(Gate::denies('manage-items')){
+            return redirect() -> route('games.index');
+        }
+
+        return view('games.create');
     }
 
     /**
@@ -35,7 +50,17 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $createGame = new Game;
+        $createGame -> name = $request ->input('name');
+        $createGame -> price = $request ->input('price');
+        $createGame -> quantity = $request ->input('quantity');
+        $createGame -> activationcode = $request ->input('activationcode');
+        $createGame -> grade = $request ->input('grade');
+        $createGame -> description = $request ->input('description');
+        $createGame -> image = $request ->input('image');
+        $createGame -> save();
+
+        return redirect() -> route('admin.users.index');
     }
 
     /**
@@ -46,7 +71,11 @@ class GameController extends Controller
      */
     public function show(Game $game)
     {
-        //
+        $reviews = Review::where('game_id',$game->id)->get();
+        return view('games.show', [
+            "game"=> $game,
+            "reviews" => $reviews
+            ]);
     }
 
     /**
@@ -57,7 +86,7 @@ class GameController extends Controller
      */
     public function edit(Game $game)
     {
-        //
+        return view('games.edit', ["game"=> $game]);
     }
 
     /**
@@ -69,7 +98,24 @@ class GameController extends Controller
      */
     public function update(Request $request, Game $game)
     {
-        //
+        $editGames = Game::find($game ->id);
+        $editGames -> name = $request ->input('name');
+        $editGames -> price = $request ->input('price');
+        $editGames -> grade = $request ->input('grade');
+        $editGames -> quantity = $request ->input('quantity');
+
+        $code = $request ->input('activationcode');
+
+        if($code==null){
+            $editGames -> activationcode = $editGames -> activationcode;
+        }else{
+            $editGames -> activationcode = $code;
+        }
+
+        $editGames -> description = $request ->input('description');
+        $editGames -> push();
+
+        return redirect() -> route('games.index')->with('success', 'Le jeu a bien été mis à jour.');
     }
 
     /**
@@ -80,6 +126,14 @@ class GameController extends Controller
      */
     public function destroy(Game $game)
     {
-        //
+        if(Gate::denies('manage-items')){
+            return redirect() -> route('games.index');
+        };
+
+        $deleteGame = Game::find($game ->id);
+        $deleteGame -> delete();
+
+        return redirect() -> route('games.index')-> with('success','Le jeu a été supprimé.');
     }
+
 }

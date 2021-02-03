@@ -5,7 +5,7 @@
     <div class="box">
         <form method="POST" action="{{ route('login') }}">
             @csrf
-            <span class="text-center">Login</span>
+            <span class="text-center">Se connecter</span>
 
             <div class="input-container">
                 <input type="text" id="email" type="email" class="@error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required/>
@@ -19,7 +19,7 @@
 
             <div class="input-container">		
                 <input id="password" type="password" class="@error('password') is-invalid @enderror" name="password" required/>
-                <label for="password">{{ __('Password') }}</label>
+                <label for="password">{{ __('Mot de passe') }}</label>
                 @error('password')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -29,13 +29,13 @@
             <div>
                 <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                 <label class="form-check-label" for="remember">
-                    {{ __('Remember Me') }}
+                    {{ __('Se souvenir de moi') }}
                 </label>
             </div>
             <button type="submit" class="btn btn-outline-light">{{ __('Login') }}</button>
             @if (Route::has('password.request'))
                 <a class="btn btn-link" href="{{ route('password.request') }}">
-                    {{ __('Forgot Your Password?') }}
+                    {{ __('Mot de passe oublié ?') }}
                 </a>
             @endif
         </form>	

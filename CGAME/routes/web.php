@@ -1,6 +1,8 @@
 <?php
 
+use App\Game;
 use Illuminate\Support\Facades\Route;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,10 +16,25 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('welcome', ['games' => Game::paginate(6)]);
+})->name('welcome');
 
 Auth::routes();
-Route::resource('/admin/users','Admin\UsersController');
+Route::get('/home', 'HomeController@index')->name('home');
+Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-items')-> group(function(){
+    Route::resource('users','UsersController');
+});
 
-Route::get('/profil', 'HomeController@index')->name('home');
+Route::resource('profile', 'ProfileController');
+Route::resource('games', 'GameController');
+Route::resource('reviews', 'ReviewController');
+Route::resource('purchases', 'PurchaseController');
+
+/* Purchase Route */
+Route::get('/cart','CartsController@show')->name('carts.show');
+Route::post('/cart/add', 'CartsController@store')-> name('carts.store');
+Route::delete('/cart/{rowId}', 'CartsController@destroy')-> name('carts.destroy');
+Route::get('/cart/clear', function(){
+    Cart::destroy();
+    return redirect()->route('games.index');
+});

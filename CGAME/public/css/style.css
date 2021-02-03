@@ -1,10 +1,11 @@
 html, body {
-    background-color: #011C26;
+    background-color: #173840;
     color: #636b6f;
     font-family: 'Nunito', sans-serif;
     font-weight: 200;
     height: 100vh;
     margin: 0;
+    position: relative;
 }
 
 .full-height {
@@ -26,7 +27,7 @@ html, body {
 
 .top-left {
     position: absolute;
-    left: 10px;
+    right: 60px;
     top: 18px;
 }
 
@@ -40,12 +41,17 @@ html, body {
 
 .links > a {
     color: #BF1111;
-    padding: 0 25px;
     font-size: 14px;
-    font-weight: 600;
+    position: relative;
     letter-spacing: .1rem;
     text-decoration: none;
     text-transform: uppercase;
+    border-bottom: 3px solid transparent;
+    transition: 0.3s;
+}
+
+.links > a:hover {
+    border-bottom: 3px solid #173840;
 }
 
 .m-b-md {
@@ -62,10 +68,8 @@ html, body {
 }
 
 .text-center{
-	color:#fff;	
-	text-transform:uppercase;
-    font-size: 23px;
-    margin: -30px 0 50px 0;
+	color:#fff;
+    font-size: 15px;
     display: block;
     text-align: center;
 }
@@ -123,9 +127,7 @@ input{
 	outline: none;
     border: 0;
     color: #fff;
-	padding:10px 20px;
 	text-transform:uppercase;
-	margin-top:50px;
 	border-radius:2px;
 	cursor:pointer;
 	position:relative;
@@ -142,4 +144,125 @@ input[type=checkbox]:checked + label:before {
   content: "";
   color: #ffffff;
   background-color: #ff0000;
+}
+
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 1s, opacity 1s linear;
+}
+
+.delete {
+    display: none;
+    transition: display 0s 1s;
+}
+
+.visible {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 1000ms linear;
+}
+
+.logoNav{
+    visibility: hidden;
+}
+
+.card-shadow {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: box-shadow 0.3s cubic-bezier(.25,.8,.25,1);
+}
+  
+.card:hover {
+box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+
+.price {
+    color :#BF1111;
+    font-size: 1.3rem;
+}
+
+.img-shadow {
+    box-shadow: 0 5px 5px rgba(0,0,0,0.12), 0 3px 4px rgba(0,0,0,0.24);
+    transition: 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.img-shadow:hover {
+    box-shadow: 0 14px 14px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    transform: scale(1.2);
+}
+
+.spacer {
+    height: 10px;
+    background: 0 0;
+}
+
+
+
+
+.red-icon {
+    transition: 0.3s ;
+    color :#BF1111;
+}
+
+.red-icon:hover {
+    color :#8C1F1F;
+    transform: scale(1.2)
+}
+
+.fa-eye {
+    color :#F2F2F2;
+}
+
+.fa-eye:hover {
+    color :#636b6f;
+}
+
+.fakebtn {
+    font-size: 100%;
+    font-family: inherit;
+    border: 0;
+    padding : 0;
+    display: inline-block;
+    font-weight: 400;
+    color: #212529;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    line-height: 1.6;
+}
+
+.solde {
+    color: #BF1111;
+    display: block;
+    padding: 0.7rem 1rem;
+    
+}
+
+.solde:hover {
+    color: #BF1111;
+    text-decoration: none;
+}
+
+.select {
+    color: #fff;
+    background : #173840;
+    border: 2px solid #BF1111;
+    border-radius: 10px;
+    -webkit-appearance:none;
+    width:3rem;
+    transition: 0.3s;
+}
+
+.page-footer {
+    background-color: #011C26;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    position: absolute;;
 }
